@@ -2,116 +2,64 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emprende Market</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>CarpiShop</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="logo">
-            <img src="images\logo.png" alt="Emprende Market Logo">
-            <h2>EMPRENDEMARKET</h2>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#">Categorías</a></li>
-                <li><a href="#">Proveedores</a></li>
-                <li><a href="#">Productos</a></li>
-            </ul>
-        </nav>
-        <div class="search-bar">
-            <input type="text" placeholder="Buscar">
-            <button>Buscar</button>
-        </div>
-    </header>
 
-    <!-- Main Content -->
-    <main>
-        <!-- Login Section -->
-        <section class="login-section">
-            <div class="login-box">
-                <img src="logo.png" alt="Emprende Market Logo" class="logo">
-                <h2>Iniciar Sesión</h2>
-                <form>
-                    <input type="email" placeholder="email@domain.com">
-                    <button type="submit">Siguiente</button>
-                </form>
-                <p>o continuar con</p>
-                <button class="google-login">Google</button>
-                <form>
-                    <input type="password" placeholder="Ingresa tu contraseña">
-                    <button type="submit">Acceder</button>
-                </form>
+    <div class="wrapper">
+        <header class="header-mobile">
+            <h1 class="logo">CarpiShop</h1>
+            <button class="open-menu" id="open-menu">
+                <i class="bi bi-list"></i>
+            </button>
+        </header>
+        <aside>
+            <button class="close-menu" id="close-menu">
+                <i class="bi bi-x"></i>
+            </button>
+            <header>
+                <h1 class="logo">CarpiShop</h1>
+            </header>
+            <nav>
+                <ul class="menu">
+                    <li>
+                        <button id="todos" class="boton-menu boton-categoria active"><i class="bi bi-hand-index-thumb-fill"></i> Todos los productos</button>
+                    </li>
+                    <li>
+                        <button id="abrigos" class="boton-menu boton-categoria"><i class="bi bi-hand-index-thumb"></i> Abrigos</button>
+                    </li>
+                    <li>
+                        <button id="camisetas" class="boton-menu boton-categoria"><i class="bi bi-hand-index-thumb"></i> Camisetas</button>
+                    </li>
+                    <li>
+                        <button id="pantalones" class="boton-menu boton-categoria"><i class="bi bi-hand-index-thumb"></i> Pantalones</button>
+                    </li>
+                    <li>
+                        <a class="boton-menu boton-carrito" href="./carrito.html">
+                            <i class="bi bi-cart-fill"></i> Carrito <span id="numerito" class="numerito">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <footer>
+                <p class="texto-footer">© 2022 Carpi Coder</p>
+            </footer>
+        </aside>
+        <main>
+            <h2 class="titulo-principal" id="titulo-principal">Todos los productos</h2>
+            <div id="contenedor-productos" class="contenedor-productos">
+                <!-- Esto se va a rellenar con JS -->
             </div>
-        </section>
-
-        <!-- Products Section -->
-        <section class="products-section">
-            <div class="product-highlight">
-                <img src="bag.png" alt="Shop Bags">
-                <h2>Shop Bags</h2>
-                <p>Back to school - Hasta 10% off</p>
-            </div>
-            <div class="categories">
-                <h3>Accesorios para juegos</h3>
-                <div class="category-items">
-                    <div class="item"><img src="auriculares.png" alt="Auriculares"><p>Auriculares</p></div>
-                    <div class="item"><img src="teclado.png" alt="Teclados"><p>Teclados</p></div>
-                    <div class="item"><img src="raton.png" alt="Ratones"><p>Ratones</p></div>
-                    <div class="item"><img src="silla.png" alt="Sillas"><p>Sillas</p></div>
-                </div>
-                <a href="#">Ver más</a>
-            </div>
-            <div class="categories">
-                <h3>Renueva tu espacio</h3>
-                <div class="category-items">
-                    <div class="item"><img src="comedor.png" alt="Comedor"><p>Comedor</p></div>
-                    <div class="item"><img src="escritorio.png" alt="Escritorio"><p>Escritorio</p></div>
-                    <div class="item"><img src="sala.png" alt="Sala"><p>Sala</p></div>
-                    <div class="item"><img src="bano.png" alt="Baño"><p>Baño</p></div>
-                </div>
-                <a href="#">Más información</a>
-            </div>
-        </section>
-
-        <!-- Product Details Section -->
-        <section class="product-details">
-            <div class="product-image">
-                <img src="silla.png" alt="Silla giratoria de videojuegos">
-            </div>
-            <div class="product-info">
-                <h2>Silla giratoria de videojuegos</h2>
-                <p>Marca: YS10A</p>
-                <p>$109.99</p>
-                <p>Silla giratoria de videojuegos y para oficina, ergonómica, con respaldo alto y ajuste en altura y brazos.</p>
-                <button>Agregar al carrito</button>
-            </div>
-        </section>
-
-        <!-- Related Products Section -->
-        <section class="related-products">
-            <h3>Productos relacionados</h3>
-            <div class="related-items">
-                <div class="item">
-                    <img src="product1.png" alt="Product 1">
-                    <p>Product</p>
-                    <p>$10.00</p>
-                </div>
-                <div class="item">
-                    <img src="product2.png" alt="Product 2">
-                    <p>Product</p>
-                    <p>$10.00</p>
-                </div>
-                <div class="item">
-                    <img src="product3.png" alt="Product 3">
-                    <p>Product</p>
-                    <p>$10.00</p>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <script src="scripts.js"></script>
+        </main>
+    </div>
+    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="./js/main.js"></script>
+    <script src="./js/menu.js"></script>
 </body>
 </html>
