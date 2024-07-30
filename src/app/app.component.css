@@ -2,10 +2,32 @@
   display: flex;
   flex-flow: column;
   height: 100%;
+  font-family: 'Roboto', sans-serif;
 }
 
 .barra {
   flex: 0 1 auto;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: background-color 0.3s;
+}
+
+.barra:hover {
+  background-color: black;
+}
+
+.titulo {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.carrito {
+  margin-right: 10px;
+  position: relative;
+  transition: transform 0.2s;
+}
+
+.carrito:hover {
+  transform: scale(1.1);
 }
 
 .contenido {
@@ -13,10 +35,31 @@
 }
 
 .padding-10 {
-  padding: 10px;
+  padding: 20px;
 }
+
+.animar-sidenav {
+  transition: transform 0.3s ease-in-out;
+}
+
+.animar-sidenav-content {
+  transition: opacity 0.3s ease-in-out;
+}
+
+.animar-sidenav-content.ng-enter {
+  opacity: 0;
+}
+
+.animar-sidenav-content.ng-enter-active {
+  opacity: 1;
+}
+
 .example-fill-remaining-space {
-  /* This fills the remaining space, by using flexbox.
-     Every toolbar row uses a flexbox row layout. */
   flex: 1 1 auto;
+}
+
+.seccion {
+  margin-left: 4px;
+  font-size: 1.1em;
+  font-weight: bold;
 }

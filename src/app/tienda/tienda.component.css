@@ -1,0 +1,11 @@
+.productos-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px; /* Ajusta el espacio entre las tarjetas si es necesario */
+  }
+  
+  app-tarjeta-producto {
+    flex: 1 1 calc(50% - 16px); /* Ajusta el ancho de las tarjetas y el espacio entre ellas */
+    box-sizing: border-box;
+  }
+  
