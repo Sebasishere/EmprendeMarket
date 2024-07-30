@@ -1,13 +1,79 @@
 .mat-card {
-  margin-bottom: 10px !important;
+  margin-bottom: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s;
+}
+
+.mat-card:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 img {
   max-width: 150px;
   height: auto;
-}
-.contenedor-imagen{
-  padding: 10px;
-  display: inline-block;
+  border-radius: 8px;
 }
 
+.contenedor-imagen {
+  padding: 10px;
+}
+
+.producto-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 20px;
+}
+
+.producto-info h2 {
+  margin: 0;
+  font-size: 1.5em;
+}
+
+.producto-info h1 {
+  margin: 10px 0;
+  font-size: 1.2em;
+  color: black;
+}
+
+.producto-info button {
+  align-self: flex-start;
+  padding: 12px 24px; /* Increased padding for a larger button */
+  font-size: 1.1em; /* Increased font size */
+  height: auto; /* Adjust height if necessary */
+}
+
+@media (max-width: 768px) {
+  .mat-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .producto-info {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mat-card {
+    padding: 10px;
+  }
+
+  .producto-info h2 {
+    font-size: 1.2em;
+  }
+
+  .producto-info h1 {
+    font-size: 1em;
+  }
+
+  .producto-info button {
+    width: 100%;
+  }
+}

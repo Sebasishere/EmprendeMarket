@@ -1,5 +1,18 @@
+.mat-card {
+  margin-bottom: 20px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s;
+}
+
+.mat-card:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
 img {
   max-width: 100%;
+  height: auto;
+  border-radius: 5%;
 }
 
 img.imagen-izquierda {
@@ -10,40 +23,66 @@ img.imagen-izquierda {
   margin-bottom: 10px;
   cursor: pointer;
   border: 5px solid #e0e0e0;
-  border-radius: 5%;
 }
-img.imagen-izquierda.seleccionada{
+
+img.imagen-izquierda.seleccionada {
   opacity: 1;
+  border-color: #ff4081;
 }
 
 .izquierda {
   margin-right: 15px;
 }
 
-mat-grid-tile.detalles ::ng-deep figure {
+.mat-grid-tile.detalles ::ng-deep figure {
   align-items: start !important;
   justify-content: start !important;
   display: block;
   padding: 5px;
 }
 
-button.carrito {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  margin: 0 0 15px 5px;
-}
-a.comprar {
-  position: absolute;
-  left: 180px;
-  bottom: 0;
-  margin: 0 0 15px 5px;
+button.carrito, a.comprar {
+  margin: 10px 5px 0 0;
+  width: calc(50% - 10px);
 }
 
 .mat-display-2 {
   margin: 0;
-
 }
-p{
+
+p {
   font-size: 1.3rem !important;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .mat-grid-list {
+    flex-direction: column;
+  }
+
+  .izquierda {
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+
+  button.carrito, a.comprar {
+    width: 100%;
+    margin: 10px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .mat-card {
+    padding: 10px;
+  }
+
+  img.imagen-izquierda {
+    width: 80px;
+    min-width: 80px;
+  }
+
+  p {
+    font-size: 1.1rem !important;
+  }
 }
