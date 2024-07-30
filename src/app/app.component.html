@@ -4,20 +4,16 @@
       <button (click)="cajon.toggle()" mat-icon-button>
         <mat-icon>menu</mat-icon>
       </button>
-      <span class="titulo">
-        EmprendeMarket
-      </span>
+      <span class="titulo">EmprendeMarket</span>
       <span class="example-fill-remaining-space"></span>
       <button mat-raised-button [matMenuTriggerFor]="menu">
-        <span class="carrito" [matBadge]="productos.length+''" matBadgeOverlap="false" matBadgePosition="below after">
+        <span class="carrito" [matBadge]="productos.length + ''" matBadgeOverlap="false" matBadgePosition="below after">
           Carrito de compras
         </span>
       </button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item *ngFor="let p of productos;">{{p.nombre}}  {{p.precio | currency}}</button>
-        <button mat-menu-item>
-          <strong>Total: {{total() | currency}}</strong>
-        </button>
+        <button mat-menu-item *ngFor="let p of productos">{{p.nombre}} {{p.precio | currency}}</button>
+        <button mat-menu-item><strong>Total: {{total() | currency}}</strong></button>
         <a *ngIf="productos.length > 0" mat-menu-item routerLink="/terminar_compra">
           <mat-icon>shopping_cart</mat-icon>
           Terminar compra
@@ -26,14 +22,14 @@
     </mat-toolbar-row>
   </mat-toolbar>
   <mat-sidenav-container class="contenido">
-    <mat-sidenav style="min-width: 300px;" #cajon opened mode="side" class="animar-sidenav">
+    <mat-sidenav style="min-width: 300px;" #cajon mode="side" class="animar-sidenav">
       <mat-nav-list>
         <p class="seccion">Administrador</p>
-        <a mat-list-item routerLink="/productos">
+        <a mat-list-item (click)="verificarAdmin('productos')">
           <mat-icon color="primary">list_alt</mat-icon>
           Productos
         </a>
-        <a mat-list-item routerLink="/ventas">
+        <a mat-list-item (click)="verificarAdmin('ventas')">
           <mat-icon color="primary">local_shipping</mat-icon>
           Ventas
         </a>

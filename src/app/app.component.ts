@@ -1,7 +1,7 @@
-
 import {Component, OnInit} from '@angular/core';
 import {CarritoService} from "./carrito.service";
 import {DataSharingService} from "./data-sharing.service";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,8 +11,13 @@ import {DataSharingService} from "./data-sharing.service";
 export class AppComponent implements OnInit {
   title = 'e-commerce-angular-node';
   public productos = [];
+  private adminPassword = 'EmprendeMarketAdmin';
 
-  constructor(private carritoService: CarritoService, private dataSharingService: DataSharingService) {
+  constructor(
+    private carritoService: CarritoService,
+    private dataSharingService: DataSharingService,
+    private router: Router
+  ) {
     // Comunicación entre componentes
     this.dataSharingService.currentMessage.subscribe(mensaje => {
       if (mensaje == "car_updated") {
@@ -36,5 +41,12 @@ export class AppComponent implements OnInit {
     this.refrescarCarrito();
   }
 
-
+  public verificarAdmin(seccion: string) {
+    const password = prompt('Ingrese la contraseña de administrador para acceder a esta sección:');
+    if (password === this.adminPassword) {
+      this.router.navigate([`/${seccion}`]);
+    } else {
+      alert('Contraseña incorrecta. No tiene permiso para acceder a esta sección.');
+    }
+  }
 }

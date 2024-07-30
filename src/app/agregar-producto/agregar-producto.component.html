@@ -1,26 +1,28 @@
 <mat-card>
   <h1>Agregar producto</h1>
-  
-  <mat-form-field appearance="fill">
-    <mat-label>Nombre</mat-label>
-    <input matInput [(ngModel)]="productoModel.nombre" type="text" placeholder="Nombre">
-  </mat-form-field>
-  
-  <mat-form-field appearance="fill">
-    <mat-label>Descripción</mat-label>
-    <textarea matInput [(ngModel)]="productoModel.descripcion" rows="5" placeholder="Descripción"></textarea>
-  </mat-form-field>
-  
-  <mat-form-field appearance="fill">
-    <mat-label>Precio</mat-label>
-    <input matInput [(ngModel)]="productoModel.precio" type="number" placeholder="Precio">
-  </mat-form-field>
-  
-  <mat-form-field appearance="fill">
-    <mat-label>Fotos</mat-label>
-    <input accept="image/png,image/jpeg" #foto id="fotos" multiple type="file">
-  </mat-form-field>
-  
+  <p>
+    <mat-form-field>
+      <input matInput [(ngModel)]="productoModel.nombre"
+             type="text"
+             placeholder="Nombre">
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field>
+      <textarea rows="10" matInput [(ngModel)]="productoModel.descripcion"
+                placeholder="Descripción"></textarea>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field>
+      <input matInput [(ngModel)]="productoModel.precio"
+             type="number"
+             placeholder="Precio">
+    </mat-form-field>
+  </p>
+  <label for="fotos">Fotos</label>
+  <br>
+  <input accept="image/png,image/jpeg" #foto required id="fotos" multiple type="file">
   <p>
     <app-loading-button [cargando]="cargando" texto="Guardar" (click)="guardar()"></app-loading-button>
     <a routerLink="/productos" mat-raised-button color="primary" style="margin-left: 10px">Volver</a>
