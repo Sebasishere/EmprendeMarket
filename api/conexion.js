@@ -1,6 +1,5 @@
-
 const mysql = require("mysql");
-// Coloca aquí tus credenciales
+
 module.exports = mysql.createPool({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
