@@ -1,18 +1,43 @@
-.mat-card {
-  margin-bottom: 20px;
-  padding: 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s;
+.contenido-detalles {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Reduce el espacio entre los elementos */
+  padding: 10px; /* Reduce el padding para ocupar menos espacio */
+  font-size: 0.9rem; /* Reduce el tamaño de la fuente */
+  max-width: 100%; /* Asegura que el contenido no sobresalga del contenedor */
 }
 
-.mat-card:hover {
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+.titulo {
+  font-size: 1.5rem; /* Reduce el tamaño del título */
+  margin: 0;
+}
+
+.descripcion {
+  font-size: 1rem; /* Reduce el tamaño de la descripción */
+  color: #666;
+  margin: 0;
+}
+
+.precio-container {
+  display: flex;
+  align-items: baseline;
+  gap: 5px; /* Reduce el espacio entre el texto del precio */
+}
+
+.precio {
+  font-size: 1.5rem; /* Reduce el tamaño del precio */
+  color: #ff4081;
+  margin: 0;
+}
+
+.botones {
+  display: flex;
+  gap: 5px; /* Reduce el espacio entre los botones */
+  margin-top: 10px; /* Reduce el margen superior */
 }
 
 img {
   max-width: 100%;
-  height: auto;
-  border-radius: 5%;
 }
 
 img.imagen-izquierda {
@@ -23,66 +48,47 @@ img.imagen-izquierda {
   margin-bottom: 10px;
   cursor: pointer;
   border: 5px solid #e0e0e0;
+  border-radius: 5%;
 }
 
 img.imagen-izquierda.seleccionada {
   opacity: 1;
-  border-color: #ff4081;
+  border-color: #000;
 }
 
 .izquierda {
   margin-right: 15px;
 }
 
-.mat-grid-tile.detalles ::ng-deep figure {
-  align-items: start !important;
-  justify-content: start !important;
-  display: block;
-  padding: 5px;
-}
-
 button.carrito, a.comprar {
-  margin: 10px 5px 0 0;
-  width: calc(50% - 10px);
-}
-
-.mat-display-2 {
-  margin: 0;
-}
-
-p {
-  font-size: 1.3rem !important;
-  margin-top: 10px;
-  margin-bottom: 20px;
+  font-size: 0.9rem; /* Reduce el tamaño de la fuente de los botones */
+  padding: 5px 10px; /* Ajusta el padding interno de los botones */
 }
 
 @media (max-width: 768px) {
-  .mat-grid-list {
-    flex-direction: column;
+  .contenido-detalles {
+    font-size: 0.8rem; /* Reduce aún más el tamaño de la fuente en pantallas pequeñas */
+    padding: 5px; /* Ajusta el padding para pantallas pequeñas */
   }
 
-  .izquierda {
-    margin-right: 0;
-    margin-bottom: 15px;
+  .titulo {
+    font-size: 1.2rem; /* Ajusta el tamaño del título en pantallas pequeñas */
+  }
+
+  .descripcion {
+    font-size: 0.9rem; /* Ajusta el tamaño de la descripción en pantallas pequeñas */
+  }
+
+  .precio {
+    font-size: 1.2rem; /* Ajusta el tamaño del precio en pantallas pequeñas */
+  }
+
+  .botones {
+    gap: 3px; /* Reduce el espacio entre los botones en pantallas pequeñas */
   }
 
   button.carrito, a.comprar {
-    width: 100%;
-    margin: 10px 0;
-  }
-}
-
-@media (max-width: 480px) {
-  .mat-card {
-    padding: 10px;
-  }
-
-  img.imagen-izquierda {
-    width: 80px;
-    min-width: 80px;
-  }
-
-  p {
-    font-size: 1.1rem !important;
+    font-size: 0.8rem; /* Ajusta el tamaño de la fuente de los botones en pantallas pequeñas */
+    padding: 3px 8px; /* Ajusta el padding de los botones en pantallas pequeñas */
   }
 }
