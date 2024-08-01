@@ -20,7 +20,7 @@ const existeProducto = (carrito, producto) => {
   return indiceDeProducto(carrito, producto.id) !== -1;
 };
 
-const DOMINIO_PERMITIDO_CORS = "https://emprendemarket.onrender.com",
+const DOMINIO_PERMITIDO_CORS = "http://localhost:4200",
   DIRECTORIO_FOTOS = path.join(__dirname, "fotos_productos"),
   DIRECTORIO_DIST = path.join(__dirname, "dist"),
   PUERTO = 3000;
