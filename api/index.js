@@ -12,6 +12,13 @@ const express = require("express"),
 const cors = require("cors"); // Importa cors
 const { v4: uuidv4 } = require("uuid");
 
+// Constantes de configuración
+const DOMINIO_PERMITIDO_CORS = "https://emprende-market.vercel.app",
+  DIRECTORIO_FOTOS = path.join(__dirname, "fotos_productos"),
+  DIRECTORIO_DIST = path.join(__dirname, "dist"),
+  PUERTO = process.env.PORT || 3000;
+
+// Funciones auxiliares
 const indiceDeProducto = (carrito, idProducto) => {
   return carrito.findIndex(productoDentroDelCarrito => productoDentroDelCarrito.id === idProducto);
 };
@@ -20,11 +27,7 @@ const existeProducto = (carrito, producto) => {
   return indiceDeProducto(carrito, producto.id) !== -1;
 };
 
-const DOMINIO_PERMITIDO_CORS = "http://localhost:4200",
-  DIRECTORIO_FOTOS = path.join(__dirname, "fotos_productos"),
-  DIRECTORIO_DIST = path.join(__dirname, "dist"),
-  PUERTO = 3000;
-
+// Middleware
 app.use(express.json());
 app.use(session({
   secret: process.env.SESSION_KEY,
@@ -38,33 +41,28 @@ app.use(cors({
   credentials: true,
 }));
 
-// Fotos
+// Servir archivos estáticos
 app.use("/foto_producto", express.static(DIRECTORIO_FOTOS));
-// Estático
 app.use("/", express.static(DIRECTORIO_DIST));
 
+// Crear directorio si no existe
 if (!fs.existsSync(DIRECTORIO_FOTOS)) {
   fs.mkdirSync(DIRECTORIO_FOTOS);
 }
 
+// Rutas
 app.delete("/producto", async (req, res) => {
   if (!req.query.id) {
-    res.end("Not found");
-    return;
+    return res.status(404).end("Not found");
   }
   const idProducto = req.query.id;
   await productoModel.eliminar(idProducto);
   res.json(true);
 });
 
-// Todo: separar rutas
-/*
-Compras
-*/
 app.get("/detalle_venta", async (req, res) => {
   if (!req.query.id) {
-    res.end("Not found");
-    return;
+    return res.status(404).end("Not found");
   }
   const idVenta = req.query.id;
   const venta = await ventaModel.obtenerPorId(idVenta);
@@ -85,14 +83,13 @@ app.post("/compra", async (req, res) => {
   carrito.forEach(p => total += p.precio);
   const idCliente = await clienteModel.insertar(nombre, direccion);
   const idVenta = await ventaModel.insertar(idCliente, total);
-  // usamos for en lugar de foreach por el await
+
   for (let m = 0; m < carrito.length; m++) {
     const productoActual = carrito[m];
     await productoVendidoModel.insertar(idVenta, productoActual.id);
   }
-  // Limpiar carrito...
+
   req.session.carrito = [];
-  // ¡listo!
   res.json(true);
 });
 
@@ -100,11 +97,10 @@ app.get("/carrito", (req, res) => {
   res.json(req.session.carrito || []);
 });
 
-// No está en un DELETE porque no permite datos en el body ._.
 app.post("/carrito/eliminar", async (req, res) => {
   const idProducto = req.body.id;
-  const indice = indiceDeProducto(req.session.carrito, idProducto);
-  if (indice >= 0 && req.session.carrito) {
+  const indice = indiceDeProducto(req.session.carrito || [], idProducto);
+  if (indice >= 0) {
     req.session.carrito.splice(indice, 1);
   }
   res.json(true);
@@ -123,10 +119,8 @@ app.post("/carrito/agregar", async (req, res) => {
   if (!req.session.carrito) {
     req.session.carrito = [];
   }
-  // por el momento no se pueden llevar más de dos productos iguales
   if (existeProducto(req.session.carrito, producto)) {
-    res.json(true);
-    return;
+    return res.json(true);
   }
   req.session.carrito.push(producto);
   res.json(req.body);
@@ -139,6 +133,9 @@ app.post('/fotos_producto', (req, res) => {
   });
 
   form.parse(req, async (err, fields, files) => {
+    if (err) {
+      return res.status(500).json({ error: "Error al procesar los archivos" });
+    }
     const idProducto = fields.idProducto;
     for (let clave in files) {
       const file = files[clave];
@@ -179,21 +176,18 @@ app.get('/productos_con_fotos', async (req, res) => {
 
 app.get('/producto', async (req, res) => {
   if (!req.query.id) {
-    res.end("not found");
-    return;
+    return res.status(404).end("Not found");
   }
   const producto = await productoModel.obtenerPorId(req.query.id);
   producto.fotos = await productoModel.obtenerFotos(req.query.id);
   res.json(producto);
 });
 
-// Una vez definidas nuestras rutas podemos iniciar el servidor
+// Iniciar servidor
 app.listen(PUERTO, err => {
   if (err) {
-    // Aquí manejar el error
     console.error("Error escuchando: ", err);
     return;
   }
-  // Si no se detuvo arriba con el return, entonces todo va bien ;)
   console.log(`Escuchando en el puerto :${PUERTO}`);
 });
