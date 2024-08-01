@@ -7,7 +7,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider ng build --configuration production"
+    "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider ng build --configuration production",
+    "test-db-connection": "node testConnection.js"
   },
   "private": true,
   "dependencies": {
