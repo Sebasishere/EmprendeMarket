@@ -41,7 +41,7 @@ img {
 .producto-info h1 {
   margin: 10px 0;
   font-size: 1.2em;
-  color: black;
+  color: rgb(8, 7, 7);
   white-space: nowrap; /* Evitar desbordamiento de texto */
   overflow: hidden;
   text-overflow: ellipsis;
